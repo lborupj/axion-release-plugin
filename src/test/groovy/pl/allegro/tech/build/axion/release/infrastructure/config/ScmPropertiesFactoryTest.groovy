@@ -35,4 +35,17 @@ class ScmPropertiesFactoryTest extends Specification {
         then:
         properties.pushTagsOnly
     }
+
+    def "Should by default relativize path"() {
+        given:
+
+        when:
+        ScmProperties properties = ScmPropertiesFactory.create(config)
+
+        then:
+        properties.relativizeProjectRoot
+
+    }
+
+
 }

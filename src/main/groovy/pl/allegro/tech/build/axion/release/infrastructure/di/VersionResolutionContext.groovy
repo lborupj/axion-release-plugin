@@ -34,8 +34,11 @@ class VersionResolutionContext {
         this.scmRepository = scmRepository
         this.scmProperties = scmProperties
         this.localOnlyResolver = localOnlyResolver
-        this.versionService = new VersionService(new VersionResolver(scmRepository,
-            scmProperties.directory.toPath().relativize(projectRoot.toPath()).toString()))
+        String projectRootRelativePath = "";
+        if (scmProperties.isRelativizeProjectRoot()) {
+            projectRootRelativePath = scmProperties.directory.toPath().relativize(projectRoot.toPath()).toString();
+        }
+        this.versionService = new VersionService(new VersionResolver(scmRepository, projectRootRelativePath));
     }
 
     static VersionResolutionContext create(VersionConfig versionConfig, Directory projectDirectory) {

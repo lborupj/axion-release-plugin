@@ -20,23 +20,24 @@ public class ScmProperties {
     private final Set<String> releaseBranchNames;
     private final boolean releaseOnlyOnReleaseBranches;
     private final boolean ignoreGlobalGitConfig;
+    private final boolean relativizeProjectRoot;
 
     public ScmProperties(
-        String type,
-        File directory,
-        String remote,
-        boolean pushTagsOnly,
-        boolean fetchTags,
-        boolean attachRemote,
-        String remoteUrl,
-        String overriddenBranchName,
-        Boolean overriddenIsClean,
-        ScmIdentity identity,
-        Boolean unshallowRepoOnCI,
-        Set<String> releaseBranchNames,
-        boolean releaseOnlyOnReleaseBranches,
-        boolean ignoreGlobalGitConfig
-    ) {
+            String type,
+            File directory,
+            String remote,
+            boolean pushTagsOnly,
+            boolean fetchTags,
+            boolean attachRemote,
+            String remoteUrl,
+            String overriddenBranchName,
+            Boolean overriddenIsClean,
+            ScmIdentity identity,
+            Boolean unshallowRepoOnCI,
+            Set<String> releaseBranchNames,
+            boolean releaseOnlyOnReleaseBranches,
+            boolean ignoreGlobalGitConfig,
+            boolean relativizeProjectRoot) {
         this.type = type;
         this.directory = directory;
         this.remote = remote;
@@ -51,6 +52,7 @@ public class ScmProperties {
         this.releaseBranchNames = releaseBranchNames;
         this.releaseOnlyOnReleaseBranches = releaseOnlyOnReleaseBranches;
         this.ignoreGlobalGitConfig = ignoreGlobalGitConfig;
+        this.relativizeProjectRoot = relativizeProjectRoot;
     }
 
     public ScmPushOptions pushOptions() {
@@ -111,5 +113,9 @@ public class ScmProperties {
 
     public boolean isIgnoreGlobalGitConfig() {
         return ignoreGlobalGitConfig;
+    }
+
+    public boolean isRelativizeProjectRoot() {
+        return relativizeProjectRoot;
     }
 }

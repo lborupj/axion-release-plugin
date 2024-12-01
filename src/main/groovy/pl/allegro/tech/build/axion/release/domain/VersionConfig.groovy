@@ -55,6 +55,7 @@ abstract class VersionConfig extends BaseExtension {
         getSnapshotCreator().convention(PredefinedSnapshotCreator.SIMPLE.snapshotCreator)
         getReleaseCommitMessage().convention(PredefinedReleaseCommitMessageCreator.DEFAULT.commitMessageCreator)
         repository = objects.newInstance(RepositoryConfig, repositoryDirectory)
+        getRelativizeProjectRoot().convention(true)
     }
 
     @Nested
@@ -126,6 +127,9 @@ abstract class VersionConfig extends BaseExtension {
 
     @Internal
     abstract Property<Boolean> getUseHighestVersion();
+
+    @Internal
+    abstract Property<Boolean> getRelativizeProjectRoot()
 
     Provider<Boolean> ignoreUncommittedChanges() {
         gradlePropertyPresent(IGNORE_UNCOMMITTED_CHANGES_PROPERTY)
